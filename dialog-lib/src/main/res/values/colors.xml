@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- normal -->
+    <color name="normal_line_title">#61AEDC</color>
+    <color name="normal_divider">#DCDCDC</color>
+    <color name="normal_title">#61AEDC</color>
+    <color name="normal_content">#383838</color>
+    <color name="normal_button">#383838</color>
+
+</resources>

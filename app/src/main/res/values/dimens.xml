@@ -1,0 +1,14 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- 主页选项 -->
+    <dimen name="menu_item_height">48dp</dimen>
+    <dimen name="menu_item_child_width">5dp</dimen>
+    <dimen name="menu_item_child_height">48dp</dimen>
+    <dimen name="menu_item_child_padding">20dp</dimen>
+    <dimen name="font_16sp">16sp</dimen>
+
+</resources>
