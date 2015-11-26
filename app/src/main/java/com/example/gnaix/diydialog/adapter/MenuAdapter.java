@@ -1,6 +1,7 @@
 package com.example.gnaix.diydialog.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -15,12 +16,14 @@ import com.example.gnaix.diydialog.R;
  * @author xiangqing.xue
  * @date 15/11/24
  */
-public class MenuAdapter extends BaseExpandableListAdapter{
+public class MenuAdapter extends BaseExpandableListAdapter {
+    private final String TAG = this.getClass().getSimpleName();
+
     private Context mContext;
     private String[] mGroupData;
     private String[][] mChildData;
 
-    public MenuAdapter(Context context, String[] groupData, String[][] childData){
+    public MenuAdapter(Context context, String[] groupData, String[][] childData) {
         this.mContext = context;
         this.mGroupData = groupData;
         this.mChildData = childData;
@@ -34,7 +37,7 @@ public class MenuAdapter extends BaseExpandableListAdapter{
 
     @Override
     public Object getGroup(int groupPosition) {
-        if(groupPosition >= mGroupData.length)
+        if (groupPosition >= mGroupData.length)
             return null;
         return mGroupData[groupPosition];
     }
@@ -48,11 +51,11 @@ public class MenuAdapter extends BaseExpandableListAdapter{
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
 
-        if(convertView == null){
+        if (convertView == null) {
             convertView = View.inflate(mContext, R.layout.menu_item, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
-        }else{
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
@@ -64,12 +67,12 @@ public class MenuAdapter extends BaseExpandableListAdapter{
     //child
     @Override
     public int getChildrenCount(int groupPosition) {
-        return mChildData.length;
+        return mChildData[groupPosition].length;
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        if(groupPosition>=mGroupData.length || childPosition>=mChildData.length)
+        if (groupPosition >= mGroupData.length || childPosition >= mChildData.length)
             return null;
         return mChildData[groupPosition][childPosition];
     }
@@ -83,14 +86,15 @@ public class MenuAdapter extends BaseExpandableListAdapter{
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
 
-        if(convertView == null){
+        if (convertView == null) {
             convertView = View.inflate(mContext, R.layout.menu_item, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
-        }else{
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        Log.d(TAG, groupPosition + ", " + childPosition);
         TextView tvContent = viewHolder.getView(R.id.tv_content);
         View vLine = viewHolder.getView(R.id.v_line);
         vLine.setVisibility(View.GONE);

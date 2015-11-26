@@ -1,5 +1,6 @@
 package com.example.gnaix.diydialog.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,23 +9,48 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ExpandableListView;
 
+import com.example.gnaix.animation_lib.BaseAnimatorSet;
+import com.example.gnaix.animation_lib.bounceEnter.BounceTopEnter;
+import com.example.gnaix.animation_lib.slideExit.SlideBottomExit;
+import com.example.gnaix.dialog_lib.listener.OnBtnClickL;
+import com.example.gnaix.dialog_lib.widget.NormalDialog;
 import com.example.gnaix.diydialog.R;
 import com.example.gnaix.diydialog.adapter.MenuAdapter;
+import com.example.gnaix.diydialog.util.T;
 import com.example.gnaix.diydialog.util.ViewFind;
 
 public class MainActivity extends AppCompatActivity implements ExpandableListView.OnChildClickListener {
+    private Context context = this;
     private ExpandableListView lvExpandable;
 
     private static String[] groups = {
-            "Default Inner Dialog"
+            "Default Inner Dialog",
+            "Custom Dialog",
+            "Default Inner Anim",
+            "Custom Anim"
     };
 
     private static String[][] childs = {
             //"Default Inner Dialog"
             {
-                    "NormalDialog Default(two btns)"
+                    "NormalDialog StyleOne",
+                    "NormalDialog StyleTwo"
+            },
+            //Custom Dialog
+            {
+                    "Custom Dialog extends BaseDialog"
+            },
+            //Default Inner Anim
+            {
+                    "Show Anim"
+            },
+            //Custom Anim
+            {
+                    "Custom Anim like taobao"
             }
     };
+    private BaseAnimatorSet bas_in;
+    private BaseAnimatorSet bas_out;
 
 
     @Override
@@ -48,6 +74,9 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
     }
 
     private void initIntances() {
+        bas_in = new BounceTopEnter();
+        bas_out = new SlideBottomExit();
+
         //获取顶层View
         View decorView = getWindow().getDecorView();
         lvExpandable = ViewFind.find(decorView, R.id.elv_menu);
@@ -77,6 +106,9 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
                     case 0:
                         normalDialogStyleOne();
                         break;
+                    case 1:
+                        normalDialogStyleTwo();
+                        break;
                 }
                 break;
         }
@@ -84,6 +116,68 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
     }
 
     private void normalDialogStyleOne() {
+        final NormalDialog dialog = new NormalDialog(context);
+        dialog.setContentText("确定退出程序?")
+                .setBtnNum(3)//button number
+                .setShowAnim(bas_in)
+                .setDismissAnim(bas_out)
+                .setCanceledOutside(true) //can canceledOutside
+                .show();
 
+        dialog.setOnBtnClickL(
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClik() {
+                        T.showLong(context, "left");
+                        dialog.dismiss();
+                    }
+                },
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClik() {
+                        T.showLong(context, "right");
+                        dialog.dismiss();
+                    }
+                },
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClik() {
+                        T.showLong(context, "middle");
+                        dialog.dismiss();
+                    }
+                });
+    }
+
+    private void normalDialogStyleTwo() {
+        final NormalDialog dialog = new NormalDialog(context);
+        dialog.setContentText("为保证咖啡豆的新鲜度和咖啡的香味，并配以特有的传统烘焙和手工冲。")
+                .setStyle(NormalDialog.STYLE_TWO)
+                .setTitleTextSize(23)
+                .setShowAnim(bas_in)
+                .setDismissAnim(bas_out)
+                .show();
+
+        dialog.setOnBtnClickL(
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClik() {
+                        T.showLong(context, "left");
+                        dialog.dismiss();
+                    }
+                },
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClik() {
+                        T.showLong(context, "right");
+                        dialog.dismiss();
+                    }
+                },
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClik() {
+                        T.showLong(context, "middle");
+                        dialog.dismiss();
+                    }
+                });
     }
 }

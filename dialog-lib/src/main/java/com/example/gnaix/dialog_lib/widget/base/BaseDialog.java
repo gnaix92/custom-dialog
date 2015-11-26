@@ -34,7 +34,7 @@ public abstract class BaseDialog<T extends BaseDialog<T>> extends Dialog{
     protected Context context;
     //设备屏幕密度
     protected DisplayMetrics displayM;
-    //enable cancel outside dialog (设置Dialog外区域是否为dismiss)
+    //enable cancel outside dialog (设置Dialog外区域是否可点击消失)
     protected boolean cancel;
 
     //showAnim
@@ -105,13 +105,14 @@ public abstract class BaseDialog<T extends BaseDialog<T>> extends Dialog{
         llControlHeight.setOrientation(LinearLayout.VERTICAL);
         llControlHeight.addView(onCreateView());
 
+        //点击dialog没有响应
+        llControlHeight.setClickable(true);
+
         llTop.addView(llControlHeight);
 
         maxHeight = displayM.heightPixels;
 
         setContentView(llTop, new ViewGroup.LayoutParams(displayM.widthPixels, (int) maxHeight));
-        //点击dialog区域外消失
-        setCanceledOnTouchOutside(true);
 
         llTop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,12 +179,6 @@ public abstract class BaseDialog<T extends BaseDialog<T>> extends Dialog{
         }else{
             BaseAnimatorSet.reset(llControlHeight);
         }
-    }
-
-    @Override
-    public void setCanceledOnTouchOutside(boolean cancel) {
-        this.cancel = cancel;
-        super.setCanceledOnTouchOutside(cancel);
     }
 
     @Override
@@ -273,6 +268,12 @@ public abstract class BaseDialog<T extends BaseDialog<T>> extends Dialog{
         return (T) this;
     }
 
+    public T setCanceledOutside(boolean cancel){
+        Log.d(TAG, "cancel");
+        this.cancel = cancel;
+        return (T) this;
+    }
+
     /**
      *  set dialog width scale:0-1
      * @param widthScale
@@ -331,6 +332,7 @@ public abstract class BaseDialog<T extends BaseDialog<T>> extends Dialog{
      * @return
      */
     protected int getResColor(int resId){
-        return Resources.getSystem().getColor(resId);
+        return context.getResources().getColor(resId);
+        //return Resources.getSystem().getColor(resId);
     }
 }

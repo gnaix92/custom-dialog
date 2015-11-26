@@ -1,12 +1,12 @@
 package com.example.gnaix.dialog_lib.widget;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
 import com.example.gnaix.dialog_lib.R;
+import com.example.gnaix.dialog_lib.util.CornerUtil;
 import com.example.gnaix.dialog_lib.widget.internal.BaseAlertDialog;
 
 /**
@@ -25,7 +25,7 @@ public class NormalDialog extends BaseAlertDialog<NormalDialog> {
     //title underline height
     private float titleLineHeight = 1f;
     //btn divider line color
-    private int deviderColor = getResColor(R.color.normal_divider);
+    private int dividerColor = getResColor(R.color.normal_divider);
 
     public static final int STYLE_ONE = 0;
     public static final int STYLE_TWO = 1;
@@ -88,5 +88,94 @@ public class NormalDialog extends BaseAlertDialog<NormalDialog> {
     @Override
     public void setUibeforeShow() {
         super.setUibeforeShow();
+
+        //title
+        if (style == STYLE_ONE) {
+            tvTitle.setMinHeight(dp2px(48));
+            tvTitle.setGravity(Gravity.CENTER_VERTICAL);
+            tvTitle.setPadding(dp2px(15), dp2px(5), dp2px(0), dp2px(5));
+            tvTitle.setVisibility(isTitleShow ? View.VISIBLE : View.GONE);
+        } else if (style == STYLE_TWO) {
+            tvTitle.setGravity(Gravity.CENTER);
+            tvTitle.setPadding(dp2px(0), dp2px(15), dp2px(0), dp2px(0));
+        }
+
+        //title underline
+        vLineTitle.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, dp2px(titleLineHeight)));
+        vLineTitle.setBackgroundColor(titleLineColor);
+        vLineTitle.setVisibility(isTitleShow && style == STYLE_ONE ? View.VISIBLE : View.GONE);
+
+        //content
+        if (style == STYLE_ONE) {
+            tvContent.setPadding(dp2px(15), dp2px(10), dp2px(15), dp2px(10));
+            tvContent.setMinHeight(dp2px(68));
+            tvContent.setGravity(contentGravity);
+        } else if (style == STYLE_TWO) {
+            tvContent.setPadding(dp2px(15), dp2px(7), dp2px(15), dp2px(20));
+            tvContent.setMinHeight(dp2px(56));
+            tvContent.setGravity(Gravity.CENTER);
+        }
+
+        //button
+        vLineHorizontal.setBackgroundColor(dividerColor);
+        vLineVertical1.setBackgroundColor(dividerColor);
+        vLineVertical2.setBackgroundColor(dividerColor);
+
+        if (btnNum == 1) {
+            tvBtnLeft.setVisibility(View.GONE);
+            tvBtnRight.setVisibility(View.GONE);
+            vLineVertical1.setVisibility(View.GONE);
+            vLineVertical2.setVisibility(View.GONE);
+        } else if (btnNum == 2) {
+            tvBtnMiddle.setVisibility(View.GONE);
+            vLineVertical1.setVisibility(View.GONE);
+        }
+
+        //set backgroud color and corner radius
+        float radius = dp2px(cornerRadius);
+        llContainer.setBackground(CornerUtil.cornerDrawable(bgColor, radius));
+        tvBtnLeft.setBackground(CornerUtil.btnSelector(radius, bgColor, btnPressColor, 0));
+        tvBtnRight.setBackground(CornerUtil.btnSelector(radius, bgColor, btnPressColor, 1));
+        tvBtnMiddle.setBackground(CornerUtil.btnSelector(btnNum == 1 ? radius : 0, bgColor, btnPressColor, -1));
     }
+
+    // ---------- attr ----------//
+    /**
+     * set style
+     */
+    public NormalDialog setStyle(int style){
+        this.style = style;
+        return this;
+    }
+
+    /**
+     * set titleLine Color
+     * @param titleLineColor
+     * @return
+     */
+    public NormalDialog setTitleLineColor(int titleLineColor){
+        this.titleLineColor = titleLineColor;
+        return this;
+    }
+
+    /**
+     * set title line height
+     * @param titleLineHeight
+     * @return
+     */
+    public NormalDialog setTitleLineHeight(float titleLineHeight){
+        this.titleLineHeight = titleLineHeight;
+        return this;
+    }
+
+    /**
+     * set divider color
+     * @param dividerColor
+     * @return
+     */
+    public NormalDialog dividerColor(int dividerColor){
+        this.dividerColor = dividerColor;
+        return this;
+    }
+
 }

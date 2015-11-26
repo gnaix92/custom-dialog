@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.gnaix.dialog_lib.R;
 import com.example.gnaix.dialog_lib.listener.OnBtnClickL;
 import com.example.gnaix.dialog_lib.widget.base.BaseDialog;
 
@@ -65,7 +66,7 @@ public abstract class BaseAlertDialog<T extends BaseAlertDialog<T>> extends Base
     protected float btnRightTextSize = 15f;
     protected float btnMiddleTextSize = 15f;
     // btn press color
-    protected int btnPressColor = Color.parseColor("#E3E3E3");// #85D3EF,#ffcccccc,#E3E3E3
+    protected int btnPressColor = getResColor(R.color.normal_button_pressed);// #85D3EF,#ffcccccc,#E3E3E3
     // btn click listener
     protected OnBtnClickL onBtnLeftClickL;
     protected OnBtnClickL onBtnRightClickL;
@@ -74,7 +75,7 @@ public abstract class BaseAlertDialog<T extends BaseAlertDialog<T>> extends Base
     // corner radius,dp(圆角程度,单位dp)
     protected float cornerRadius = 3;
     // background color(背景颜色)
-    protected int bgColor = Color.parseColor("#ffffff");
+    protected int bgColor = getResColor(R.color.normal_bg);
 
     /**
      * method execute order:
@@ -161,8 +162,8 @@ public abstract class BaseAlertDialog<T extends BaseAlertDialog<T>> extends Base
         tvBtnMiddle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(onBtnRightClickL != null){
-                    onBtnRightClickL.onBtnClik();
+                if(onBtnMiddleClickL != null){
+                    onBtnMiddleClickL.onBtnClik();
                 }else{
                     dismiss();
                 }
