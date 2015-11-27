@@ -7,7 +7,7 @@ import com.example.gnaix.animation_lib.BaseAnimatorSet;
 
 /**
  * 名称: SlideBottomExit
- * 描述:
+ * 描述: 下拉消失
  *
  * @author xiangqing.xue
  * @date 15/11/26

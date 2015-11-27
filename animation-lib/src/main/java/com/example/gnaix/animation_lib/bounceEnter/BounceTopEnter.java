@@ -7,7 +7,7 @@ import com.example.gnaix.animation_lib.BaseAnimatorSet;
 
 /**
  * 名称: BounceTopEnter
- * 描述:
+ * 描述: 下拉进入(带回弹效果)
  *
  * @author xiangqing.xue
  * @date 15/11/26

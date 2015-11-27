@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">DiyDialog</string>
     <string name="action_settings">Settings</string>
-    <string name="normal_dialog_two_content">Settings</string>
+
+
+    <string name="normal_dialog_two_content">为保证咖啡豆的新鲜度和咖啡的香味，并配以特有的传统烘焙和手工冲。</string>
+    <string name="normal_dialog_custome_attr">是否确定退出程序</string>
+    <string name="normal_dialog_btn_content">您今天的名额已用完</string>
+    <string name="normal_dialog_btn_1">取消</string>
+    <string name="normal_dialog_btn_2">确定</string>
+    <string name="normal_dialog_btn_3">继续逛逛</string>
 
 </resources>

@@ -1,8 +1,8 @@
 package com.example.gnaix.dialog_lib.widget.internal;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -193,6 +193,10 @@ public abstract class BaseAlertDialog<T extends BaseAlertDialog<T>> extends Base
     }
 
     // -------- content -------- //
+    public T setContentText(int resId){
+        this.contentText = getResString(resId);
+        return (T) this;
+    }
     public T setContentText(String text){
         this.contentText = text;
         return (T) this;
@@ -228,37 +232,59 @@ public abstract class BaseAlertDialog<T extends BaseAlertDialog<T>> extends Base
         }
         switch (btnTexts.length){
             case 1:
-                tvBtnMiddle.setText(btnTexts[0]);
+                this.btnMiddleText = btnTexts[0];
                 break;
             case 2:
-                tvBtnLeft.setText(btnTexts[0]);
-                tvBtnRight.setText(btnTexts[1]);
+                this.btnLeftText = btnTexts[0];
+                this.btnRightText = btnTexts[1];
                 break;
             case 3:
-                tvBtnLeft.setText(btnTexts[0]);
-                tvBtnRight.setText(btnTexts[1]);
-                tvBtnMiddle.setText(btnTexts[2]);
+                this.btnLeftText= btnTexts[0];
+                this.btnRightText= btnTexts[1];
+                this.btnMiddleText= btnTexts[2];
+                break;
+        }
+        return (T) this;
+    }
+
+    public T setBtnText(int... resId) {
+        if (resId.length < 1 || resId.length > 3){
+            throw new IllegalStateException("range of param btnTexts length is [1,3]");
+        }
+        switch (resId.length){
+            case 1:
+                this.btnMiddleText = getResString(resId[0]);
+                break;
+            case 2:
+                this.btnLeftText = getResString(resId[0]);
+                this.btnRightText = getResString(resId[1]);
+                break;
+            case 3:
+                this.btnLeftText= getResString(resId[0]);
+                this.btnRightText= getResString(resId[1]);
+                this.btnMiddleText= getResString(resId[2]);
                 break;
         }
         return (T) this;
     }
 
     public T setBtnTextColor(int... btnTextColors) {
+        Log.d(TAG, btnTextColors.toString());
         if (btnTextColors.length < 1 || btnTextColors.length > 3){
             throw new IllegalStateException("range of param btnTextColors length is [1,3]");
         }
         switch (btnTextColors.length){
             case 1:
-                tvBtnMiddle.setTextColor(btnTextColors[0]);
+                this.btnMiddleTextColor = btnTextColors[0];
                 break;
             case 2:
-                tvBtnLeft.setTextColor(btnTextColors[0]);
-                tvBtnRight.setTextColor(btnTextColors[1]);
+                this.btnLeftTextColor = btnTextColors[0];
+                this.btnRightTextColor = btnTextColors[1];
                 break;
             case 3:
-                tvBtnLeft.setTextColor(btnTextColors[0]);
-                tvBtnRight.setTextColor(btnTextColors[1]);
-                tvBtnMiddle.setTextColor(btnTextColors[2]);
+                this.btnLeftTextColor = btnTextColors[0];
+                this.btnRightTextColor = btnTextColors[1];
+                this.btnMiddleTextColor = btnTextColors[2];
                 break;
         }
         return (T) this;
@@ -270,16 +296,16 @@ public abstract class BaseAlertDialog<T extends BaseAlertDialog<T>> extends Base
         }
         switch (btnTextSizes.length){
             case 1:
-                tvBtnMiddle.setTextSize(btnTextSizes[0]);
+                this.btnLeftTextSize = btnTextSizes[0];
                 break;
             case 2:
-                tvBtnLeft.setTextSize(btnTextSizes[0]);
-                tvBtnRight.setTextSize(btnTextSizes[1]);
+                this.btnLeftTextSize = btnTextSizes[0];
+                this.btnRightTextSize = btnTextSizes[1];
                 break;
             case 3:
-                tvBtnLeft.setTextSize(btnTextSizes[0]);
-                tvBtnRight.setTextSize(btnTextSizes[1]);
-                tvBtnMiddle.setTextSize(btnTextSizes[2]);
+                this.btnLeftTextSize = btnTextSizes[0];
+                this.btnRightTextSize = btnTextSizes[1];
+                this.btnMiddleTextSize = btnTextSizes[2];
                 break;
         }
         return (T) this;

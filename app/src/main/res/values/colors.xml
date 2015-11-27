@@ -7,4 +7,9 @@
     <color name="menu_item_line">#468ED0</color>
     <color name="menu_item_content">#383838</color>
     <color name="menu_gb">#FFFFFF</color>
+
+    <color name="normal_dialog_bg">#383838</color>
+    <color name="normal_dialog_text">#FFFFFF</color>
+    <color name="normal_dialog_divider">#222222</color>
+    <color name="normal_dialog_btn_pressed">#2B2B2B</color>
 </resources>

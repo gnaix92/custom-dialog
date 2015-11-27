@@ -10,7 +10,7 @@ import com.nineoldandroids.view.ViewHelper;
 
 /**
  * 名称: BaseAnimatorSet
- * 描述:
+ * 描述: 基础动画
  *
  * @author xiangqing.xue
  * @date 15/11/25

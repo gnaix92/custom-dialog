@@ -5,7 +5,7 @@
     <color name="normal_divider">#DCDCDC</color>
     <color name="normal_title">#61AEDC</color>
     <color name="normal_content">#383838</color>
-    <color name="normal_button">#383838</color>
+    <color name="normal_button">#8a000000</color>
     <color name="normal_button_pressed">#E3E3E3</color>
     <color name="normal_bg">#FFFFFF</color>
 

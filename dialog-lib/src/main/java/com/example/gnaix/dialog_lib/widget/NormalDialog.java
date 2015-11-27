@@ -173,7 +173,7 @@ public class NormalDialog extends BaseAlertDialog<NormalDialog> {
      * @param dividerColor
      * @return
      */
-    public NormalDialog dividerColor(int dividerColor){
+    public NormalDialog setDividerColor(int dividerColor){
         this.dividerColor = dividerColor;
         return this;
     }

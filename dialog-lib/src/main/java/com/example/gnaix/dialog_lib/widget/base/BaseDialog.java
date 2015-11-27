@@ -35,7 +35,7 @@ public abstract class BaseDialog<T extends BaseDialog<T>> extends Dialog{
     //设备屏幕密度
     protected DisplayMetrics displayM;
     //enable cancel outside dialog (设置Dialog外区域是否可点击消失)
-    protected boolean cancel;
+    protected boolean cancel = true;
 
     //showAnim
     private BaseAnimatorSet showAnim;
@@ -183,26 +183,26 @@ public abstract class BaseDialog<T extends BaseDialog<T>> extends Dialog{
 
     @Override
     public void show() {
-        super.show();
         Log.d(TAG, "show");
+        super.show();
     }
 
     @Override
     protected void onStart() {
-        super.onStart();
         Log.d(TAG, "onStart");
+        super.onStart();
     }
 
     @Override
     protected void onStop() {
-        super.onStop();
         Log.d(TAG, "onStop");
+        super.onStop();
     }
 
     @Override
     public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
         Log.d(TAG, "onDetachedFromWindow");
+        super.onDetachedFromWindow();
     }
 
     @Override
@@ -334,5 +334,9 @@ public abstract class BaseDialog<T extends BaseDialog<T>> extends Dialog{
     protected int getResColor(int resId){
         return context.getResources().getColor(resId);
         //return Resources.getSystem().getColor(resId);
+    }
+
+    protected String getResString(int resId){
+        return context.getResources().getString(resId);
     }
 }
