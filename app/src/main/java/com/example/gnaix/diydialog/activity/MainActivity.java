@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -14,6 +13,7 @@ import com.example.gnaix.animation_lib.BaseAnimatorSet;
 import com.example.gnaix.animation_lib.bounceEnter.BounceTopEnter;
 import com.example.gnaix.animation_lib.slideExit.SlideBottomExit;
 import com.example.gnaix.dialog_lib.listener.OnBtnClickL;
+import com.example.gnaix.dialog_lib.widget.MateriaDialog;
 import com.example.gnaix.dialog_lib.widget.NormalDialog;
 import com.example.gnaix.diydialog.R;
 import com.example.gnaix.diydialog.adapter.MenuAdapter;
@@ -22,6 +22,11 @@ import com.example.gnaix.diydialog.util.ViewFind;
 
 public class MainActivity extends AppCompatActivity implements ExpandableListView.OnChildClickListener {
     private final String TAG = this.getClass().getSimpleName();
+    private final String LEFT = "left";
+    private final String RIGHT = "right";
+    private final String MIDDLE = "middle";
+
+
     private Context context = this;
     private ExpandableListView lvExpandable;
 
@@ -39,7 +44,10 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
                     "NormalDialog StyleTwo",
                     "NormalDialog Custom Attr",
                     "NormalDialog oneBtn",
-                    "NormalDialog threeBtn"
+                    "NormalDialog threeBtn",
+                    "MaterialDialog Default",
+                    "MaterialDialog ThreeBtn",
+                    "MaterialDialog OneBtn"
             },
             //Custom Dialog
             {
@@ -122,6 +130,15 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
                     case 4:
                         normalDialogThreeBtn();
                         break;
+                    case 5:
+                        materialDialogDefault();
+                        break;
+                    case 6:
+                        materialDialogThreeBtn();
+                        break;
+                    case 7:
+                        materialDialogOneBtn();
+                        break;
                 }
                 break;
         }
@@ -130,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
 
     private void normalDialogStyleOne() {
         final NormalDialog dialog = new NormalDialog(context);
-        dialog.setContentText("确定退出程序?")
+        dialog.setContentText(R.string.content_three)
                 .setShowAnim(bas_in)
                 .setDismissAnim(bas_out)
                 .setCanceledOutside(true) //can canceledOutside
@@ -140,14 +157,14 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
                 new OnBtnClickL() {
                     @Override
                     public void onBtnClik() {
-                        T.showLong(context, "left");
+                        T.showLong(context, LEFT);
                         dialog.dismiss();
                     }
                 },
                 new OnBtnClickL() {
                     @Override
                     public void onBtnClik() {
-                        T.showLong(context, "right");
+                        T.showLong(context, RIGHT);
                         dialog.dismiss();
                     }
                 });
@@ -155,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
 
     private void normalDialogStyleTwo() {
         final NormalDialog dialog = new NormalDialog(context);
-        dialog.setContentText(R.string.normal_dialog_two_content)
+        dialog.setContentText(R.string.content_one)
                 .setStyle(NormalDialog.STYLE_TWO)
                 .setTitleTextSize(23)
                 .setShowAnim(bas_in)
@@ -166,14 +183,14 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
                 new OnBtnClickL() {
                     @Override
                     public void onBtnClik() {
-                        T.showLong(context, "left");
+                        T.showLong(context, LEFT);
                         dialog.dismiss();
                     }
                 },
                 new OnBtnClickL() {
                     @Override
                     public void onBtnClik() {
-                        T.showLong(context, "right");
+                        T.showLong(context, RIGHT);
                         dialog.dismiss();
                     }
                 });
@@ -184,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
         dialog.isTitleShow(false)
                 .setBgColor(getResColor(R.color.normal_dialog_bg))
                 .setCornerRadius(5)
-                .setContentText(R.string.normal_dialog_custome_attr)
+                .setContentText(R.string.content_three)
                 .setContentGravity(Gravity.CENTER)
                 .setContentTextColor(getResColor(R.color.normal_dialog_text))
                 .setDividerColor(getResColor(R.color.normal_dialog_divider))
@@ -200,14 +217,14 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
                 new OnBtnClickL() {
                     @Override
                     public void onBtnClik() {
-                        T.showLong(context, "left");
+                        T.showLong(context, LEFT);
                         dialog.dismiss();
                     }
                 },
                 new OnBtnClickL() {
                     @Override
                     public void onBtnClik() {
-                        T.showLong(context, "right");
+                        T.showLong(context, RIGHT);
                         dialog.dismiss();
                     }
                 });
@@ -216,9 +233,9 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
 
     private void normalDialogOneBtn() {
         final NormalDialog dialog = new NormalDialog(context);
-        dialog.setContentText(R.string.normal_dialog_btn_content)
+        dialog.setContentText(R.string.content_two)
                 .setBtnNum(1)
-                .setBtnText(R.string.normal_dialog_btn_3)
+                .setBtnText(R.string.btn_middle)
                 .setShowAnim(bas_in)
                 .setDismissAnim(bas_out)
                 .show();
@@ -226,17 +243,17 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
         dialog.setOnBtnClickL(new OnBtnClickL() {
             @Override
             public void onBtnClik() {
-                T.showLong(context, "middle");
+                T.showLong(context, MIDDLE);
                 dialog.dismiss();
             }
         });
     }
 
-    private void normalDialogThreeBtn(){
+    private void normalDialogThreeBtn() {
         final NormalDialog dialog = new NormalDialog(context);
-        dialog.setContentText(R.string.normal_dialog_btn_content)
+        dialog.setContentText(R.string.content_three)
                 .setBtnNum(3)
-                .setBtnText(R.string.normal_dialog_btn_1, R.string.normal_dialog_btn_2, R.string.normal_dialog_btn_3)
+                .setBtnText(R.string.btn_left, R.string.btn_right, R.string.btn_middle)
                 .setShowAnim(bas_in)
                 .setDismissAnim(bas_out)
                 .show();
@@ -244,26 +261,99 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
                 new OnBtnClickL() {
                     @Override
                     public void onBtnClik() {
-                        T.showLong(context, "left");
+                        T.showLong(context, LEFT);
                         dialog.dismiss();
                     }
                 },
                 new OnBtnClickL() {
                     @Override
                     public void onBtnClik() {
-                        T.showLong(context, "right");
+                        T.showLong(context, RIGHT);
                         dialog.dismiss();
                     }
                 },
                 new OnBtnClickL() {
                     @Override
                     public void onBtnClik() {
-                        T.showLong(context, "middle");
+                        T.showLong(context, MIDDLE);
                         dialog.dismiss();
                     }
                 });
     }
 
+    private void materialDialogDefault() {
+        final MateriaDialog dialog = new MateriaDialog(context);
+        dialog.setContentText(R.string.content_one)
+                .setBtnText(R.string.btn_left, R.string.btn_right)
+                .setShowAnim(bas_in)
+                .setDismissAnim(bas_out)
+                .show();
+        dialog.setOnBtnClickL(
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClik() {
+                        T.showLong(context, LEFT);
+                        dialog.dismiss();
+                    }
+                },
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClik() {
+                        T.showLong(context, RIGHT);
+                        dialog.dismiss();
+                    }
+                });
+    }
+
+    private void materialDialogThreeBtn() {
+        final MateriaDialog dialog = new MateriaDialog(context);
+        dialog.setContentText(R.string.content_one)
+                .isTitleShow(false)
+                .setBtnNum(3)
+                .setBtnText(R.string.btn_left, R.string.btn_right, R.string.btn_middle_1)
+                .setShowAnim(bas_in)
+                .setDismissAnim(bas_out)
+                .show();
+        dialog.setOnBtnClickL(
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClik() {
+                        T.showLong(context, LEFT);
+                        dialog.dismiss();
+                    }
+                },
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClik() {
+                        T.showLong(context, RIGHT);
+                        dialog.dismiss();
+                    }
+                },
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClik() {
+                        T.showLong(context, MIDDLE);
+                        dialog.dismiss();
+                    }
+                });
+    }
+    private void materialDialogOneBtn() {
+        final MateriaDialog dialog = new MateriaDialog(context);
+        dialog.setContentText(R.string.content_one)
+                .setBtnNum(1)
+                .setBtnText(R.string.btn_right)
+                .setShowAnim(bas_in)
+                .setDismissAnim(bas_out)
+                .show();
+        dialog.setOnBtnClickL(
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClik() {
+                        T.showLong(context, LEFT);
+                        dialog.dismiss();
+                    }
+                });
+    }
 
     /**
      * get resource color
