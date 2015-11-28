@@ -7,7 +7,7 @@ import android.widget.LinearLayout.LayoutParams;
 
 import com.example.gnaix.dialog_lib.R;
 import com.example.gnaix.dialog_lib.util.CornerUtil;
-import com.example.gnaix.dialog_lib.widget.internal.BaseAlertDialog;
+import com.example.gnaix.dialog_lib.widget.base.BaseNormalDialog;
 
 /**
  * 名称: NormalDialog
@@ -16,7 +16,7 @@ import com.example.gnaix.dialog_lib.widget.internal.BaseAlertDialog;
  * @author xiangqing.xue
  * @date 15/11/25
  */
-public class NormalDialog extends BaseAlertDialog<NormalDialog> {
+public class NormalDialog extends BaseNormalDialog<NormalDialog> {
 
     //分割线
     private View vLineTitle, vLineVertical1, vLineVertical2, vLineHorizontal;

@@ -7,7 +7,7 @@ import android.widget.LinearLayout.LayoutParams;
 
 import com.example.gnaix.dialog_lib.R;
 import com.example.gnaix.dialog_lib.util.CornerUtil;
-import com.example.gnaix.dialog_lib.widget.internal.BaseAlertDialog;
+import com.example.gnaix.dialog_lib.widget.base.BaseNormalDialog;
 
 /**
  * 名称: MateriaDialog
@@ -16,7 +16,7 @@ import com.example.gnaix.dialog_lib.widget.internal.BaseAlertDialog;
  * @author xiangqing.xue
  * @date 15/11/27
  */
-public class MateriaDialog extends BaseAlertDialog<MateriaDialog> {
+public class MateriaDialog extends BaseNormalDialog<MateriaDialog> {
 
     public MateriaDialog(Context context) {
         super(context);

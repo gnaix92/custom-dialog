@@ -1,4 +1,4 @@
-package com.example.gnaix.dialog_lib.widget.internal;
+package com.example.gnaix.dialog_lib.widget.base;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -11,16 +11,15 @@ import android.widget.TextView;
 
 import com.example.gnaix.dialog_lib.R;
 import com.example.gnaix.dialog_lib.listener.OnBtnClickL;
-import com.example.gnaix.dialog_lib.widget.base.BaseDialog;
 
 /**
- * 名称: BaseAlertDialog
+ * 名称: BaseNormalDialog
  * 描述:
  *
  * @author xiangqing.xue
  * @date 15/11/25
  */
-public abstract class BaseAlertDialog<T extends BaseAlertDialog<T>> extends BaseDialog {
+public abstract class BaseNormalDialog<T extends BaseNormalDialog<T>> extends BaseDialog {
 
     // container
     protected LinearLayout llContainer;
@@ -84,7 +83,7 @@ public abstract class BaseAlertDialog<T extends BaseAlertDialog<T>> extends Base
      *
      * @param context
      */
-    public BaseAlertDialog(Context context) {
+    public BaseNormalDialog(Context context) {
         super(context);
         setWidthScale(0.88f);
         llContainer = new LinearLayout(context);
