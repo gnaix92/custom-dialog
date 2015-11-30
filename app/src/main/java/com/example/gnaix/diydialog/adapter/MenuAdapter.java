@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import com.example.gnaix.dialog_lib.adapter.ViewHolder;
 import com.example.gnaix.diydialog.R;
 
 /**

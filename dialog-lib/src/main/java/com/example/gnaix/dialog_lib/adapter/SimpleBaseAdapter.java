@@ -1,10 +1,11 @@
-package com.example.gnaix.diydialog.adapter;
+package com.example.gnaix.dialog_lib.adapter;
 
 import android.content.Context;
-import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.example.gnaix.dialog_lib.adapter.ViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
  * @date 15/11/24
  */
 public abstract class SimpleBaseAdapter<T> extends BaseAdapter {
-    private Context mContext;
+    protected Context mContext;
     private List<T> mData;
 
     public SimpleBaseAdapter(Context context, List<T> data) {

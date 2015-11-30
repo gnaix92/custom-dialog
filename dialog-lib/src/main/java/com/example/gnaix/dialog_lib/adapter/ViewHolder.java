@@ -1,4 +1,4 @@
-package com.example.gnaix.diydialog.adapter;
+package com.example.gnaix.dialog_lib.adapter;
 
 import android.util.SparseArray;
 import android.view.View;

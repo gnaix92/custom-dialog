@@ -16,4 +16,11 @@
     <color name="material_btn_right">#468ED0</color>
     <color name="material_btn_middle">#00796B</color>
 
+
+    <!-- List -->
+    <color name="list_bg">#303030</color>
+    <color name="list_title">#FFFFFF</color>
+    <color name="list_item_text_color">#FFFFFF</color>
+
+
 </resources>
